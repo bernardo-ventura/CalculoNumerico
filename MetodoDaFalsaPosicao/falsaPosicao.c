@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 
-float f(float x){
-    return pow(x,2) - 5;
+double f(double x){
+    return x*(log10(x)) - 1;
 }
 
 int main(){
-    float a,b,p,tolerancia;
-    tolerancia = pow(10,-5);
-
+    double a,b,p,tolerancia;
+    tolerancia = pow(10,-7);
+    int i=1;
     a = 2.0;
     b = 3.0;
 
@@ -19,17 +19,20 @@ int main(){
 
             if(f(p) == 0){
                 printf("A raiz é %f\n",p);
-                break;
+                exit(-1);
             }else{
                 if(f(a) * f(p) < 0){
                     b = p;
                 }else{
                     a = p;
                 }
-            }    
+            }
+        printf("Iteração: %d\n csi: %f \n f(csi): %f\n",i,a,f(a));
+        i++;   
         }
     }else{
         printf("Não existe raiz nesse intervalo\n");
+        exit(-1);
     }
     printf("A raiz é %f\n",a);
     return 0;
